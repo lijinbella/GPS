@@ -22,8 +22,12 @@ $ paste R1 R2 |awk '{if(NR%4==2) print $0}'|uniq > test_step1
 
 #Read alignment
 $ bowtie2 -x /reference/bowtie2Indices/hg19 -f test_step12 -k 20 -p 10  --omit-sec-seq -S test_step123.sam
+
 $ ./software/sam2bed < test_step123.sam > test_step123.bed -d 
+
 $ awk '{printf(""%s\t%s\t%s\t%s\t%d\n"",$4,""*"",$6,$1,$2)}' test_step123.bed  > test_step1234
+
 $ ./software/sw_7.0 test_step1234 /reference/GPS_index_files/ test_step12345 /software/score_matrix_n.txt /software/score_matrix_p.txt 475 6 20 test_step1234_unmap
+
 
 The file test_step12345 contained the information of cytosine location, methylation level and coverage.
